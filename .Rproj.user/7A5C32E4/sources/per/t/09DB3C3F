@@ -1,0 +1,25 @@
+{
+    "id": "09DB3C3F",
+    "path": "~/Desktop/STAT 302/Projects/Project3/stat302Package/vignettes/tutorial.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "2031599440",
+    "contents": "",
+    "dirty": false,
+    "created": 1615960406260.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "cursorPosition": "254,47",
+        "scrollLine": "243",
+        "last_setup_crc32": "46BBA0602bf4d57a"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1615961325,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1615961325571,
+    "read_only": false,
+    "read_only_alternatives": []
+}

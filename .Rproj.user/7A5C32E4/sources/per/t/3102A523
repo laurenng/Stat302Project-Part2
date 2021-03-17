@@ -1,0 +1,32 @@
+{
+    "id": "3102A523",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1615962654024.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "expression": "df_rf_cv",
+        "caption": "df_rf_cv",
+        "totalObservations": 90,
+        "displayedObservations": 90,
+        "variables": 2,
+        "cacheKey": "CFA3E593",
+        "object": "df_rf_cv",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=df_rf_cv&cache_key=CFA3E593&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 0,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1615962654024,
+    "read_only": false,
+    "read_only_alternatives": []
+}

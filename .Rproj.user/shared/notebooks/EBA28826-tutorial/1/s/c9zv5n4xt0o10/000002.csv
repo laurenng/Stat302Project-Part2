@@ -1,0 +1,9 @@
+"0","for (i in c(2, 5, 10)) {
+  for (t in 1:30) {
+    all_cv <- rbind(all_cv, c(""Name"" = i,
+                              ""Value"" = my_rf_cv(i))) 
+  }
+}
+"
+"2","Error in drop_na(.) : could not find function ""drop_na""
+"

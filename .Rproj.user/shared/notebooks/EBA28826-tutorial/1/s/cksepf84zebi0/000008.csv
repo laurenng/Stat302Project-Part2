@@ -1,0 +1,6 @@
+"0","table <- all_cv %>%
+  dplyr::group_by(""Name"") %>%
+  dplyr::summarise_each(funs(mean, sd))
+"
+"2","Error in dplyr::group_by(., ""Name"") : object 'all_cv' not found
+"

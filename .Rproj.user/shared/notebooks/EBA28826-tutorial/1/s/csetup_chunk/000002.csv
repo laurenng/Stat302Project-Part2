@@ -1,0 +1,10 @@
+"0","library(stat302Package)"
+"2","
+Attaching package: ‘stat302Package’
+
+"
+"2","The following objects are masked _by_ ‘.GlobalEnv’:
+
+    my_gapminder, my_rf_cv
+
+"

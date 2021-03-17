@@ -1,0 +1,104 @@
+---
+title: "analysis"
+author: "Lauren Ng"
+date: "3/16/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Loading in the data and functions 
+``` {r}
+penguins <- read.csv("../Data/my_penguins.csv")
+gapminder <- read.csv("../Data/my_gapminder.csv")
+
+source("../Code/my_rf_cv.R")
+
+# stating all the libraries being used throughout the file 
+library("tidyverse")
+library("randomForest")
+library(dplyr)
+
+```
+
+# Tutorial for my_rf_cv
+``` {r}
+# initializing dataframe that'll store all the simulations
+all_cv <- data.frame("Name"=character(), 
+                 "Value"=double(), 
+                 stringsAsFactors=FALSE) 
+
+# Iterating through 2,5,10 folds 30 times each to create the dataframe 
+for (i in c(2, 5, 10)) {
+  for (t in 1:30) {
+    all_cv <- rbind(all_cv, c("Name" = i,
+                              "Value" = my_rf_cv(i))) 
+  }
+}
+
+# Adding names and formatting dataframe for boxplot 
+colnames(all_cv) <- c("Name", "Value")
+all_cv$Name <- as.factor(all_cv$Name)
+
+# Creating the boxplot 
+cv_boxplot <- ggplot(all_cv, aes(x=Name, y=Value)) + 
+  geom_boxplot() + 
+  labs(title="Plot of number of folds",
+       x="# of folds", 
+       y = "Cross Validation error",
+       caption = "this boxplot illustrates the variation of 30 tests
+       done with the specified number of folds and their CV rates") + 
+   theme(plot.title = element_text(hjust = 0.5))
+
+# saving the box plot to Output/Figure/cv_boxplot.pdf location 
+ggsave("boxplot", cv_boxplot, pdf, "../Output/Figures")
+```
+
+## Table of Mean and Standard Deviation
+``` {r}
+# initializing the summary table 
+mean_sd_table <- data.frame("mean"=double(), 
+                 "standard deviation"=double(), 
+                 stringsAsFactors=FALSE) 
+
+# creating summary table 
+table <- all_cv %>%
+  group_by(Name) %>%
+  summarise(mean = mean(Value), sd = sd(Value))
+
+# saving the summary table to the following path: Output/Results/summary_stats.rds
+saveRDS(table, file = "../Output/Results/summary_stats.rds")
+```
+
+``` {r}
+# iterating through 2 folds simulation 30 times 
+MSE_k2 <- rep(NA, 30)
+for (i in 1:30) {
+  MSE_k2[i] <-  my_rf_cv(2) 
+}
+# iterating through 5 folds simulation 30 times 
+MSE_k5 <- rep(NA, 30)
+for (i in 1:30) {
+  MSE_k5[i] <-  my_rf_cv(5) 
+}
+
+# iterating through 10 folds simulation 30 times 
+MSE_k10 <- rep(NA, 30)
+for (i in 1:30) {
+  MSE_k10[i] <-  my_rf_cv(10) 
+}
+
+
+# Binding everything together 
+cv_list <- append(MSE_k2, MSE_k5)
+cv_list <- append(cv_list, MSE_k10)
+k_val <- c(rep(2, 30), rep(5, 30), rep(10, 30))
+formatted_simulation <- data.frame("2" = MSE_k2,
+           "5" = MSE_k5,
+           "10" = MSE_k10)
+
+# writing the csv to Output/Results/simulation_results.csv
+write_csv(formatted_simulation, "../Output/Results/simulation_results.csv")
+```
